@@ -1,3 +1,43 @@
+
+## Project 4
+## Leon Tabak
+## 30 July 2015
+
+1) Optimization of PageSpeed Insights score for index.html
+
+  - load scripts asynchronously
+
+  - inline specifications of style
+
+2) Optimization of the frames per second rate in views/pizza.html
+
+  - steps taken
+    * create smaller version of an image (so that size of
+      image in file matches the size with which it will be 
+      drawn)
+
+    * move repeated operations out of loops
+
+    * draw only as many pizzas as are needed to fill
+      the screen with an array of pizzas
+
+    * search through DOM to find and collect nodes
+      that belong to a specified class just once
+      (instead of repeating the operation during each
+      pass through a loop)
+
+    * replace divisions with additions
+
+  - location of changes
+    * creation of object to hold global values at line 21
+
+    * definition of changePizzaSizes() beginning at line 703
+
+    * definition of updatePostions() beginning at line 777
+
+    * call to document.addEventListener() beginning at line 832
+
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
