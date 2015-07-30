@@ -1,3 +1,13 @@
+\documentclass[twoside]{article}
+\title{JavaScript Source Code for Project 4}
+\author{Leon Tabak}
+\date{29 July 2015}
+\usepackage{listings}
+\lstset{language=java}
+
+\begin{document}
+\section*{views/js/main.js}
+\begin{lstlisting}{}
 /*
 Welcome to the 60fps project! Your goal is to make Cam's 
 Pizzeria website run jank-free at 60 frames per second.
@@ -16,9 +26,6 @@ Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
 */
-
-// add object to hold global variables---LHT 30 Jul 2015
-var global = {};
 
 // As you may have realized, this website randomly 
 // generates pizzas.
@@ -775,44 +782,18 @@ function logAverageFrame(times) {
 // https://www.igvita.com/slides/2012/
 //   devtools-tips-and-tricks/jank-demo.html
 
-
 // Moves the sliding background pizzas based on scroll
 // position
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  // made items a global variable---LHT 30 Jul 2015
-  //var items = document.querySelectorAll('.mover');
-  var scaledYcoordinate = document.body.scrollTop/1250;
-  // create array of sine values outside of loop---LHT 30 Jul 2015
-    var scaledSines = [100 * Math.sin(scaledYcoordinate + 0),
-               100 * Math.sin(scaledYcoordinate + 1),
-               100 * Math.sin(scaledYcoordinate + 2),
-               100 * Math.sin(scaledYcoordinate + 3),
-               100 * Math.sin(scaledYcoordinate + 4),
-  		];
-
-  // create variable before entering loop
-  var phase;
-  var j = 0;
-  var item;
-  for (var i = 0; i < global.items.length; i++) {
-      // var phase = Math.sin((document.body.scrollTop / 1250) +
-      //   (i % 5));
-      // phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-      // removed y calculation from loop---LHT 30 Jul 2015
-      //phase = Math.sin( scaledYcoordinate + j);
-      //phase = sines[j];
-
-      item = global.items[i];
-      //item.style.left = item.basicLeft + 100 * phase +
-      //  'px';
-      item.style.left = (item.basicLeft + scaledSines[j]) + 'px';
-      j++;
-      if( j === 5 ) {
-	  j = 0;
-      } // if
+  var items = document.querySelectorAll('.mover');
+  for (var i = 0; i < items.length; i++) {
+    var phase = Math.sin((document.body.scrollTop / 1250) +
+        (i % 5));
+    items[i].style.left = items[i].basicLeft + 100 * phase +
+        'px';
   }
 
   // User Timing API to the rescue again. 
@@ -836,41 +817,18 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-
-  // precompute left coordinates---LHT 30 Jul 2015
-  var leftCoordinates = [];
-  for( var j = 0; j < cols; j += 1 ) {
-      leftCoordinates.push((j % cols) * s);
-  } // for
-
-  // change i < 200 to i < 24
-  // this changes number of pizzas
-  // screen is not big enough to hold 200 pizzas
-  // LHT 30 Jul 2015
-  var j = 0;
-  var yCoordinate = 0;
-  for (var i = 0; i < 32; i++) {
+  for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
-    // use scaled imaged---LHT 30 Jul 2015
-    elem.src = "images/pizza-small.png";
+    elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-
-    // use precomputed values---LHT 30 Jul 2015
-    //elem.basicLeft = (i % cols) * s;
-    elem.basicLeft = leftCoordinates[j];
-    j++;
-    if( j > cols ) {
-	j = 0;
-        yCoordinate += s;
-    } // if
-
-    //elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    elem.style.top = yCoordinate + 'px';
+    elem.basicLeft = (i % cols) * s;
+    elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector(
         "#movingPizzas1").appendChild(elem);
   }
-  global.items = document.querySelectorAll('.mover');
   updatePositions();
 });
+\end{lstlisting}
+\end{document}
