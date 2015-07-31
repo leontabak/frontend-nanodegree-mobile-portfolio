@@ -5,21 +5,30 @@
 
 1) Optimization of PageSpeed Insights score for index.html
 
+  - replace pizzeria.jpg with smaller version of image, scaled to match size
+    at which it will be displayed
+
   - load scripts asynchronously
 
   - inline specifications of style
 
+  - use Google's WebFont API to load fonts
+
 2) Optimization of the frames per second rate in views/pizza.html
 
   - steps taken
-    * create smaller version of an image (so that size of
-      image in file matches the size with which it will be 
-      drawn)
+    * create smaller version of pizza.png so that size of
+      the image in file matches the size with which it will be 
+      drawn
 
     * move repeated operations out of loops
+      > program computes sines of just five angles---compute 
+        these values before entering the loop, store values in an array, 
+        and then retrieve values as needed for operations inside the loop
 
     * draw only as many pizzas as are needed to fill
-      the screen with an array of pizzas
+      the screen with an array of pizzas---instead of
+      200, draw 24
 
     * search through DOM to find and collect nodes
       that belong to a specified class just once
@@ -27,8 +36,15 @@
       pass through a loop)
 
     * replace divisions with additions
+      > loop computes (i % 5) for successive values
+        of i---create another variable j to repeatedly
+        count from 0 to 4
+      > loop computes floor(i/cols)---this is a step
+        function whose value increases when i % cols === 0,
+        so again a counter variable and addition can be
+        used to eliminate a division
 
-  - location of changes
+  - location of changes in views/js/main.js
     * creation of object to hold global values at line 21
 
     * definition of changePizzaSizes() beginning at line 703
