@@ -2,6 +2,45 @@
 ## Project 4
 ## Leon Tabak
 ## 30 July 2015
+## update 04 August 2015
+
+This project includes HTML, CSS, and JavaScript. A copy of the
+code that includes my modifications is available on GitHub: 
+
+https://github.com/leontabak/frontend-nanodegree-mobile-portfolio
+
+I modified the code in index.html and views/js/main.js.
+
+HOW TO RUN CODE
+
+To run the code:
+  - open index.html in a browser
+  - click on the link to Cam's Pizzeria that is at the bottom of the page
+  - scroll up and down on the Cam's Pizzeria page
+  - use the scroll bar that is part way down on that page to 
+    change the size of the pizzas drawn on the page.
+
+My goal on this project was to improve the performance of
+the Web site. 
+
+  - I measured the performance using Google's PageSpeed Insights.
+    You can access this tool by visiting the site with your browser:
+
+    https://developers.google.com/speed/pagespeed/insights/
+
+    Then enter the URL for project.
+
+
+  - I measured performance using Google's Chrome
+    browser. You can do examine the performance in the same
+    way that I did by selecting View/Developer/Developer's Tools
+    from the menu in Chrome. 
+      * Open the Timeline tab and use the record button to the time
+        required to redraw the pizza.html while scrolling. 
+      * Open the Console tab to see messages logged by the 
+        main.js script.
+
+SUMMARY OF CHANGES
 
 1) Optimization of PageSpeed Insights score for index.html
 
@@ -53,6 +92,7 @@
 
     * call to document.addEventListener() beginning at line 832
 
+DIRECTIONS GIVEN TO ME
 
 ## Website Performance Optimization portfolio project
 
