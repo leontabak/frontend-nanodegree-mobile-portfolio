@@ -13,6 +13,10 @@ I modified the code in index.html and views/js/main.js.
 
 HOW TO RUN CODE
 
+I have placed this code on GitHub:
+
+  https://github.com/leontabak/frontend-nanodegree-mobile-portfolio
+
 To run the code:
   - open index.html in a browser
   - click on the link to Cam's Pizzeria that is at the bottom of the page
@@ -26,10 +30,16 @@ the Web site.
   - I measured the performance using Google's PageSpeed Insights.
     You can access this tool by visiting the site with your browser:
 
-    https://developers.google.com/speed/pagespeed/insights/
+      https://developers.google.com/speed/pagespeed/insights/
 
-    Then enter the URL for project.
+    Then enter the URL for project. I ran an HTTP server on my
+    laptop computer and used ngrok to make the site visible
+    through the Internet.  
 
+    I have since deployed the project on an HTTP server 
+    that runs all of the time:
+
+      http://www.countingfromzero.com/projects/frontend-nanodegree-mobile-portfolio/index.html
 
   - I measured performance using Google's Chrome
     browser. You can do examine the performance in the same

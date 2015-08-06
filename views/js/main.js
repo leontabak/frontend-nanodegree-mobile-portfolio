@@ -685,8 +685,12 @@ var resizePizzas = function(size) {
   // Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldwidth = elem.offsetWidth;
+    // replace call to document.querySelector() with
+    // a call to more efficient document.getElementsById(),
+    // per suggestion for Udacity reviewer---LHT 04 Aug 2015
     var windowwidth =
-        document.querySelector("#randomPizzas").offsetWidth;
+        // document.querySelector("#randomPizzas").offsetWidth;
+        document.getElementsById("randomPizzas").offsetWidth;
     var oldsize = oldwidth / windowwidth;
 
     // TODO: change to 3 sizes? no more xl?
@@ -716,12 +720,24 @@ var resizePizzas = function(size) {
       // collect pizza elements once and do it outside of
       // the loop (rather than do it in very pass through
       // loop)---LHT 30 Jul 2015
-      var pizzas = document.querySelectorAll(".randomPizzaContainer");
-    for (var i = 0; i < pizzas.length; i++) {
-        var dx = determineDx(pizzas[i], size);
-        var newwidth = (pizzas[i].offsetWidth + dx) + 'px';
-        pizzas[i].style.width = newwidth;
-    } // for
+      // replace call to document.querySelectorAll() with
+      // a call to the more efficient document.getElementsByClassName(),
+      // per suggestion of Udacity's reviwer---LHT 04 Aug 2015
+      // var pizzas = document.getSelectorAll(".randomPizzaContainer");
+      var pizzas = document.queryElementsByClassName("randomPizzaContainer");
+      // compute length of array once (outside of loop), per suggestion
+      // for Udacity's reviewer---LHT 04 Aug 2015
+      var length = pizzas.length;
+      // move calculations/assignments of dx and newwidth
+      // outside of the loop, per suggestion of Udacity's
+      // reviewer---LHT 04 Aug 2015
+      var dx = determineDx(pizzas[0], size);
+      var newwidth = (pizzas[0].offsetWidth + dx) + 'px';
+      for (var i = 0; i < length; i++) {
+          //var dx = determineDx(pizzas[i], size);
+          //var newwidth = (pizzas[i].offsetWidth + dx) + 'px';
+          pizzas[i].style.width = newwidth;
+      } // for
   } // changePizzaSizes()
 
   changePizzaSizes(size);
@@ -741,8 +757,13 @@ window.performance.mark("mark_start_generating");
 
 // This for-loop actually creates and appends all of the
 // pizzas when the page loads
+
+// move call to document.getElementById() outside
+// of loop, per suggestion from Udacity's reviewer
+// ---LHT 05 Aug 2015
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
+  // var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -805,7 +826,11 @@ function updatePositions() {
   var phase;
   var j = 0;
   var item;
-  for (var i = 0; i < global.items.length; i++) {
+  // compute length once (before entering loop),
+  // per suggestion of Udacity's reviewer
+  // ---LHT 05 Aug 2015
+  var length = global.items.length;
+  for (var i = 0; i < length; i++) {
       // var phase = Math.sin((document.body.scrollTop / 1250) +
       //   (i % 5));
       // phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
@@ -859,8 +884,24 @@ document.addEventListener('DOMContentLoaded', function() {
   // LHT 30 Jul 2015
   var j = 0;
   var yCoordinate = 0;
-  for (var i = 0; i < 24; i++) {
-    var elem = document.createElement('img');
+  // declare elem just once (outside of loop),
+  // per suggestion of Udacity's reviewer
+  // ---LHT 05 Aug 2015
+  var elem;
+
+  // replace call to document.querySelector() with
+  // call to document.getElementById(), per
+  // suggestion from Udacity's reviewer
+  // ---LHT 05 Aug 2015
+  var movingPizzas = document.getElementById("movingPizzas1");
+
+  // rather than guess at how many pizzas are needed
+  // to create a pattern that fills the screen, calculate
+  // (per suggestion of Udacity's reviewer)---LHT 05 Aug 2015
+  var numberOfPizzas = cols * window.screen.height/s;
+
+  for (var i = 0; i < numberOfPizzas; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     // use scaled imaged---LHT 30 Jul 2015
     elem.src = "images/pizza-small.png";
@@ -880,8 +921,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //elem.style.top = (Math.floor(i / cols) * s) + 'px';
     elem.style.top = yCoordinate + 'px';
-    document.querySelector(
-        "#movingPizzas1").appendChild(elem);
+    // replace call to document.querySelector() with
+    // call to document.getElementById(), per
+    // suggestion from Udacity's reviewer
+    // ---LHT 05 Aug 2015
+    // document.querySelector(
+    //    "#movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
   global.items = document.querySelectorAll('.mover');
   updatePositions();
