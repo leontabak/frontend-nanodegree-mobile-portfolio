@@ -688,9 +688,11 @@ var resizePizzas = function(size) {
     // replace call to document.querySelector() with
     // a call to more efficient document.getElementsById(),
     // per suggestion for Udacity reviewer---LHT 04 Aug 2015
+    // replace getElementsById() with getElementById()
+    // (a case of typing too fast and not checking work)---LHT 07 Aug 2015
     var windowwidth =
         // document.querySelector("#randomPizzas").offsetWidth;
-        document.getElementsById("randomPizzas").offsetWidth;
+        document.getElementById("randomPizzas").offsetWidth;
     var oldsize = oldwidth / windowwidth;
 
     // TODO: change to 3 sizes? no more xl?
@@ -722,9 +724,11 @@ var resizePizzas = function(size) {
       // loop)---LHT 30 Jul 2015
       // replace call to document.querySelectorAll() with
       // a call to the more efficient document.getElementsByClassName(),
-      // per suggestion of Udacity's reviwer---LHT 04 Aug 2015
+      // per suggestion of Udacity's reviewer---LHT 04 Aug 2015
       // var pizzas = document.getSelectorAll(".randomPizzaContainer");
-      var pizzas = document.queryElementsByClassName("randomPizzaContainer");
+      // replaced queryElementsByClassName() with getElementsByClassName()
+      // (a case of typing too fast and not checking work)---LHT 07 Aug 2015
+      var pizzas = document.getElementsByClassName("randomPizzaContainer");
       // compute length of array once (outside of loop), per suggestion
       // for Udacity's reviewer---LHT 04 Aug 2015
       var length = pizzas.length;
@@ -929,6 +933,9 @@ document.addEventListener('DOMContentLoaded', function() {
     //    "#movingPizzas1").appendChild(elem);
     movingPizzas.appendChild(elem);
   }
-  global.items = document.querySelectorAll('.mover');
+  // replace call to document.querySelectorAll() with
+  // a call to document.getElementsByClassName(), per
+  // suggestion of Udacity's reviewer---LHT 07 Aug 2015
+  global.items = document.getElementsByClassName('.mover');
   updatePositions();
 });
