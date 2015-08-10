@@ -659,18 +659,20 @@ var resizePizzas = function(size) {
 
   // Changes the value for the size of the pizza above
   // the slider
+  // change all calls to document.querySelector() to
+  // calls to document.getElementById()---LHT 10 Aug 2015
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML =
+        document.getElementById("pizzaSize").innerHTML =
             "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML =
+        document.getElementById("pizzaSize").innerHTML =
             "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML =
+        document.getElementById("pizzaSize").innerHTML =
             "Large";
         return;
       default:
@@ -903,7 +905,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // to create a pattern that fills the screen, calculate
   // (per suggestion of Udacity's reviewer)---LHT 05 Aug 2015
   var numberOfPizzas = cols * window.screen.height/s;
-
+  
   for (var i = 0; i < numberOfPizzas; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
@@ -936,6 +938,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // replace call to document.querySelectorAll() with
   // a call to document.getElementsByClassName(), per
   // suggestion of Udacity's reviewer---LHT 07 Aug 2015
-  global.items = document.getElementsByClassName('.mover');
+  // removed period from argument in call to method
+  // (changed '.mover' to 'mover')---LHT 10 Aug 2015
+  global.items = document.getElementsByClassName('mover');
   updatePositions();
 });
